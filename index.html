@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Mireo Report A Map Problem | CompactMaps</title>
+
+		<script src='https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+		<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css"/>
+
+		<link rel="stylesheet" type="text/css" href="./dist/map-report.umd.css">
+		<script src='./dist/map-report.umd.js'></script>
+
+		<style>
+			html, body { margin:0; padding:0; width: 100%; height: 100%;}
+			.mapgl {
+				width: 100%;
+				position: absolute;
+				top: 0; bottom: 0;
+			}
+		</style>
+	</head>
+<body>
+	<div id='map' class='mapgl'></div>
+
+	<script>
+		var mgl = new mapboxgl.Map({
+			container: 'map',
+			style: '<MAP_STYLE_ENDPOINT>',
+			center: [15.979231, 45.794791],
+			zoom: 14,
+			hash: true
+		});
+
+		// add before the map has loaded
+		mgl.addControl(new MapReport({ locale: 'en', service: '<REPORTING_SERVICE_ENDPOINT>' }), 'bottom-right');
+		
+		// add after the map has loaded
+		mgl.on('load', () => {
+			mgl.addControl(new MapReport({ 
+				locale: 'hr', 
+				service: '<REPORTING_SERVICE_ENDPOINT>',
+				referer: 'referer ID',
+				bounds: null,
+			}), 'bottom-right');
+		});
+		
+	</script>
+
+</body>
+</html>-1094795586

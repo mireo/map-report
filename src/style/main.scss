@@ -1,0 +1,212 @@
+.mapboxgl-ctrl-bottom-left {
+	.mireo-issue-report .issue-report { left: 20px; }
+}
+.mapboxgl-ctrl-bottom-right {
+	.mireo-issue-report .issue-report { right: 20px; }
+}
+
+.mireo-issue-report {
+
+	position: relative;
+
+	$mr-green: #01B6B2;
+	@mixin mr-button() {
+		background-color: $mr-green;
+		border: 1px solid $mr-green;
+		color: white;
+		border-radius: 2px;
+		padding: 8px 16px;
+
+		&:not(:disabled):hover {
+			background-color: $mr-green;
+			border: 1px solid $mr-green;
+		}
+	}
+	
+	.feedback-trigger {
+		color: $mr-green;
+		cursor: pointer; 
+	}
+	.issue-report {
+		box-sizing: border-box;
+		*, *:before, *:after {
+			box-sizing: inherit;
+		}
+
+		display: none;
+		width: min(90vw, 550px);
+		height: min(90vh, 450px);
+		position: absolute;
+		bottom: 20px;
+
+		background: #FFFFFF;
+		box-shadow: 0px 0px 18px #aaa;
+		flex-direction: column;
+		border: 2px solid #f1f1f2;
+		.header {
+			display: flex;
+			flex-direction: row;
+			font-family: Arial;
+			height: 30px;
+			font-size: 14px;
+			background: #FFFFFF;
+			color: #5f666c;
+	
+			.title {
+				flex-grow: 1;
+				padding: 4px 15px;
+			}
+			.close {
+				text-align: end;
+				flex-grow: 0;
+				
+				align-self: flex-end;
+				cursor: pointer;
+				padding: 5px 5px 5px 10px;
+
+				.icon { font-size: 18px; }
+			}
+		}
+		.content {
+			flex-grow: 1;
+	
+			display: flex;		
+			flex-direction: row;
+			
+			.map-sidebar {
+				display: flex;
+				flex-direction: column;
+				flex-grow: 12;
+				.mireo-issue-map {
+					flex-grow: 1;
+					:focus { outline: none; }
+				}
+			}
+			.sidebar {
+				color: #5f666c;
+				display: flex;
+				width: 185px;
+				flex-direction: column;
+				flex-grow: 1;
+				cursor: pointer;
+	
+				.menu, .category-content {
+					flex-grow: 1;
+					flex-direction: column;
+					padding: 0px 1px;
+	
+					.title-wrapper {
+						display: flex;
+						flex-direction: row;
+						padding: 15px;
+						background-color: #F3F3F3;
+				
+						.back {
+							padding: 0px 6px 0px 0px;
+							cursor: pointer;
+							font-size: 16px;
+							color: #5f666c;
+						}
+						.issue-title {
+							flex-grow: 0;
+							text-align: left;
+							font-size: 16px;
+							font-family: Arial;
+						}
+						&:not(.main-title):hover > * { color: $mr-green; }
+					}
+					.issue-categories, .issue-types {
+						display: flex;
+						background: none;
+						flex-direction: column;
+						font-family: Arial;
+						font-size: 14px;
+			
+						.issue-category, .issue-label {
+							box-sizing: border-box;
+							border: none;
+							background: none;
+							font-size: 14px;
+							font-family: Arial;
+							text-align: left;
+							padding: 12px 15px 12px 15px;
+							color: #5f666c;
+							border-bottom: 1px solid #D4DCE3;
+							cursor: pointer;
+				
+							&:hover { 
+								background: $mr-green;
+								color: #FFFFFF;
+							}
+						}
+						.issue-label { padding: 12px 0px 12px 30px; }
+						.issue-type {
+							display: none;
+							&:checked + .issue-label { 
+								background: $mr-green;
+								color: #FFFFFF;
+							}
+						}
+					}
+					.description {
+						display: flex;
+						flex-flow: column;
+						flex: 1;
+						padding: 12px;
+						.textarea {
+							font-size: 14px;
+							display: flex;
+							flex:  1;
+							color: #5f666c;
+							border-color: #5f666c8c;
+							resize: none;
+							font-family: Arial;
+							padding: 8px 16px;
+						}
+					}
+					.issue-send {
+						padding: 0px 12px 12px 12px;
+						align-self: end;
+				
+						> button {
+							@include mr-button;
+						}
+					}
+				}
+				.category-content { display: none; }
+			}
+		}
+		.confirmation {
+			display: none;
+
+			font-size: 14px;
+			line-height: 3em;
+			text-align: center;
+    		padding: 30px 0px;
+
+    		
+			&-succ {
+				.message-succ { display: unset; }
+				.message-err { display: none; }
+			}
+			&-err {
+				.message-succ { display: none; }
+				.message-err { display: unset; }
+			}
+
+			.confirmation-back {
+				padding: 10px;
+
+				> button {
+						@include mr-button;
+						float: none;
+				}
+			}
+		}
+
+		&.report-sent {
+			.content { display: none !important; }
+			.confirmation { display: unset; }
+		}
+	}	
+}
