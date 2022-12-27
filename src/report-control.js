@@ -112,12 +112,7 @@ MapReport.prototype.onAdd = function(map) {
 	const loc = locales[this._locale] || locales['hr'];
 	this._container.innerHTML = ihtml.replace(/\{([\w]+)\}/gm,  (m, p) => loc[p] );
 
-	try {
-		this.init()
-	}
-	catch (err) {
-		this._map.on('load', () => this.init());
-	}
+	this.init();
 
 	this._map.on('moveend', () => {
 		if(!this._rmap) return;
@@ -168,12 +163,7 @@ MapReport.prototype.init = function() {
 		const {lat, lng} = map.getCenter();
 		const bnds = this._bnds ? new mapboxgl.LngLatBounds(this._bnds) : null;
 
-		if (!bnds || !this._service) {
-			e.currentTarget.setAttribute('href', ['https://www.openstreetmap.org#map=' + map.getZoom(), lat, lng].join('/'));
-			return;
-		}
-
-		if (bnds.contains(map.getCenter())) {
+		if (this._service && bnds && bnds.contains(map.getCenter())) {
 			this._show();
 		 	return e.preventDefault();
 		}
@@ -188,6 +178,7 @@ MapReport.prototype.onRemove = function(map) {
 
 MapReport.prototype._show = function() {
 	if (!this._map.style || !this._map.style.stylesheet) return;
+
 	const el = this._container.querySelector('.issue-report');
 	el.style.display = 'flex';
 
@@ -199,30 +190,30 @@ MapReport.prototype._show = function() {
 			center: this._map.getCenter(),
 			zoom: this._map.getZoom()
 		});
-	}
 
-	this._rmap.on('load', function() {
-		this.addSource('report-road', {
-			type: 'geojson',
-			data: {
-				type: 'FeatureCollection',
-				features: []
-			}
+		this._rmap.on('load', function() {
+			this.addSource('report-road', {
+				type: 'geojson',
+				data: {
+					type: 'FeatureCollection',
+					features: []
+				}
+			});
+			this.addLayer({
+				id: 'report-road',
+				type: 'line',
+				source: 'report-road',
+				layout: {
+					'line-join': 'round',
+					'line-cap': 'round'
+				},
+	 			paint: {
+					'line-color': 'orangered',
+					'line-width': 4
+				}
+			}, 'roadsOnewayArrowL');
 		});
-		this.addLayer({
-			id: 'report-road',
-			type: 'line',
-			source: 'report-road',
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
- 			paint: {
-				'line-color': 'orangered',
-				'line-width': 4
-			}
-		}, 'roadsOnewayArrowL');
-	});
+	}
 
 	if (this._marker) {
 		this._marker.setLngLat(this._map.getCenter());

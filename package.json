@@ -1,6 +1,6 @@
 {
 	"name": "map-report",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": "https://www.mireo.com",
 	"description": "JavaScript Mapbox GL JS compatible UI control for reporting map data problems.",
 	"keywords": [
@@ -32,6 +32,6 @@
 		"serve": "^14.0.1"
 	},
 	"peerDependencies": {
-		"mapbox-gl": "^1.13.2"
+		"mapbox-gl": "^0.41.0 <2.0.0"
 	}
 }
