@@ -112,10 +112,12 @@ MapReport.prototype.onAdd = function(map) {
 	const loc = locales[this._locale] || locales['hr'];
 	this._container.innerHTML = ihtml.replace(/\{([\w]+)\}/gm,  (m, p) => loc[p] );
 
-	if (!this._service) return;
-
-	if (this._map.loaded()) this.init();
-	else this._map.on('load', () => this.init());
+	try {
+		this.init()
+	}
+	catch (err) {
+		this._map.on('load', () => this.init());
+	}
 
 	this._map.on('moveend', () => {
 		if(!this._rmap) return;
@@ -166,7 +168,7 @@ MapReport.prototype.init = function() {
 		const {lat, lng} = map.getCenter();
 		const bnds = this._bnds ? new mapboxgl.LngLatBounds(this._bnds) : null;
 
-		if (!bnds) {
+		if (!bnds || !this._service) {
 			e.currentTarget.setAttribute('href', ['https://www.openstreetmap.org#map=' + map.getZoom(), lat, lng].join('/'));
 			return;
 		}
@@ -185,6 +187,7 @@ MapReport.prototype.onRemove = function(map) {
 };
 
 MapReport.prototype._show = function() {
+	if (!this._map.style || !this._map.style.stylesheet) return;
 	const el = this._container.querySelector('.issue-report');
 	el.style.display = 'flex';
 

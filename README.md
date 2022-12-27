@@ -10,7 +10,6 @@
     - [HTML with UMD build](#html-with-umd-build)
 - [Congifuration](#configuration)
     - [Configuration parameters](#configuration-parameters)
-    - [Positioning MapReport IControl on the map](#positioning-mapreport-icontrol-on-the-map)
 - [How it is made?](#how-it-is-made)
     - [Browser compatibility](#browser-compatibility)
 - [Building from source](#building-from-source)
@@ -94,14 +93,7 @@ mgl.on('load', () => {
 | `locale`    | string    | `'hr'`     | [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) localization language, available options are `hr` for Croatian, `en` for English. Defaults to `hr` (Croatian).   |
 | `referer`    | string    |  '' |  Referer's arbitrary identification parameter; useful for identifying client's map server and map data version. If unset defaults to the web page's current URL, or precisely [window.location.href](https://developer.mozilla.org/en-US/docs/Web/API/Location/href) property.    |
 | `bounds`    | [LngLatBoundsLike](https://docs.mapbox.com/mapbox-gl-js/api/geography/#lnglatboundslike) object | `[[13.45, 42.37], [19.47, 46.57]]` | A geographical bounding box, used to limit the reporting area.<br /> If the bounding box contains the current map center, the Interface Control will open the dialog for reporting errors in the map data. Setting the bounding box parameter explicitly to `null` has the same effect. By default, if the bounding box doesn't contain the current map's center, the Interface Control will open in the new tab the link to the [OpenStreetMap](https://www.openstreetmap.org/about) edit page.<br /> The bounding box is defined by its southwest and northeast points in longitude and latitude. |
-
-### Positioning MapReport IControl on the map
-Add IControl to the map using [Map#addControl](https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addcontrol) interface. This adds an IControl to the map, calling `control.onAdd(this)`. Available parameters are:
-
-| Name | Description |
-|- |- |
-|`control(IControl)`| The [IControl](https://docs.mapbox.com/mapbox-gl-js/api/markers/#icontrol) to add.|
-|`position(string?)` | Position on the map to which the control will be added.<br/> Defaults to  `'top-right'`. <br/> Valid values are  `'top-left'`, `'top-right'`, `'bottom-left'`, and  `'bottom-right'`.|
+|`position` | string | `'bottom-right'` | Position on the map to which the control will be added.<br/> Valid values are  `'bottom-left'`, and  `'bottom-right'`.|
 
 ## How it is made
 The `MapReport` is a framework-agnostic plugin built using pure JavaScript ([ECECMAScript 9](https://en.wikipedia.org/wiki/ECMAScript#9th_Edition_–_ECMAScript_2018)) and works across all modern browsers.
