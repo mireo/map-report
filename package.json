@@ -1,6 +1,6 @@
 {
 	"name": "map-report",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"author": "https://www.mireo.com",
 	"description": "JavaScript Mapbox GL JS compatible UI control for reporting map data problems.",
 	"keywords": [
