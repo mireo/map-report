@@ -163,7 +163,7 @@ MapReport.prototype.init = function() {
 		const {lat, lng} = map.getCenter();
 		const bnds = this._bnds ? new mapboxgl.LngLatBounds(this._bnds) : null;
 
-		if (this._service && bnds && bnds.contains(map.getCenter())) {
+		if (this._service && bnds && (lat < bnds.getNorth() && lat > bnds.getSouth()) && (lng > bnds.getWest() && lng < bnds.getEast()) ) {
 			this._show();
 		 	return e.preventDefault();
 		}

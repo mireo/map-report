@@ -131,10 +131,10 @@ npm run build
 
 ```
 The library build will output the following:
-- `dist/compact-chart.common.js` - a [CommonJS](https://en.wikipedia.org/wiki/CommonJS) bundle for consuming via bundlers
-- `dist/compact-chart.umd.js`: a [UMD](https://github.com/umdjs/umd#umd-universal-module-definition) bundle for consuming directly in browsers or with AMD loaders
-- `dist/compact-chart.umd.min.js`: minified version of the UMD build
-- `dist/compact-chart.css`: extracted CSS file
+- `dist/map-report.common.js` - a [CommonJS](https://en.wikipedia.org/wiki/CommonJS) bundle for consuming via bundlers
+- `dist/map-report.umd.js`: a [UMD](https://github.com/umdjs/umd#umd-universal-module-definition) bundle for consuming directly in browsers or with AMD loaders
+- `dist/map-report.umd.min.js`: minified version of the UMD build
+- `dist/map-report.css`: extracted CSS file
 
 
 **Note on mapboxgl dependancy**

@@ -1,13 +1,13 @@
 {
 	"name": "map-report",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"author": "https://www.mireo.com",
 	"description": "JavaScript Mapbox GL JS compatible UI control for reporting map data problems.",
 	"keywords": [
 		"mapboxgl",
 		"javascript"
 	],
-	"main": "dist/bundle.umd.js",
+	"main": "dist/map-report.esm.js",
 	"scripts": {
 		"prebuild": "rimraf dist",
 		"watch": "rollup -c -w",

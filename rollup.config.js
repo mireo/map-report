@@ -23,7 +23,7 @@ export default {
 			babelHelpers: 'bundled'
 		}),
 		postcss({
-			extract: true,
+			extract: 'map-report.css',
 			extensions: ['.scss','.css'],
 			minimize: process.env.BUILD === 'production'
 		}),
