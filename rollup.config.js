@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from "rollup-plugin-terser";
 import commonjs from '@rollup/plugin-commonjs';
 
 console.log('process.env.BUILD ', process.env.BUILD)
@@ -27,6 +27,6 @@ export default {
 			extensions: ['.scss','.css'],
 			minimize: process.env.BUILD === 'production'
 		}),
-		process.env.BUILD === 'production' && uglify(),
+		process.env.BUILD === 'production' && terser(),
 	]
 };
