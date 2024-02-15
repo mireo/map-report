@@ -1,7 +1,7 @@
 export default {
 	'en': {		
-		trigger: '&#9755; Report a problem',
-		title: 'Report a map problem',
+		trigger: '&#9755; Report a map data problem',
+		title: 'Report a map data problem',
 		close_title: 'Close',
 	
 		menu_title: 'Kind of problem?',
@@ -29,11 +29,11 @@ export default {
 
 	},
 	'hr': {
-		trigger: '&#9755; Prijavi pogrešku',
-		title: 'Prijavi pogrešku na karti',
+		trigger: '&#9755; Prijava pogreške u karti',
+		title: 'Prijavite pogrešku u karti',
 		close_title: 'Zatvori',
 	
-		menu_title: 'Definiraj tip pogreške:',
+		menu_title: 'Definirajte tip pogreške:',
 		cat_label_road: 'Pogrešni podaci o cesti',
 		cat_label_place: 'Pogrešni podaci mjesta',
 		cat_label_other: 'Ostale pogreške',
@@ -51,7 +51,7 @@ export default {
 		other_title: 'Ostale pogreške',
 
 		description: 'Opis problema',
-		send_report: 'Prijavi pogrešku',
+		send_report: 'Pošalji prijavu',
 		confirmation_succ: 'Hvala Vam na prijavi pogreške.<br>Pogledat ćemo je u najkraćem mogućem roku.',
 		confirmation_err: 'Pogreška u prijavi pogreške.<br>Molimo pokušajte kasnije.',
 		confirmation_back: 'Vrati na početak'

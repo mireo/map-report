@@ -6,7 +6,7 @@ const ihtml = `
 				<div class='title'>{title}</div>
 				<div class='close'>
 					<span class='label'>{close_title}</span>
-					<span class='icon'>&nbsp;&#x2716;</span>
+					<span class='icon'>&nbsp;&#x2715;</span>
 				</div>
 			</div>
 			<div class='content'>
@@ -284,11 +284,13 @@ MapReport.prototype._back_to_start = function() {
 MapReport.prototype._send_issue = function() {
 	const ikind = this._container.querySelector('input.issue-type:checked').id;
 	const description = this._container.querySelector(`[data-issue-content = "${this._category}"] textarea`).value;
-	
+	const referer = this._referer || window.location.href;
+	const timestamp = new Date().toUTCString();
+
 	const resp = fetch(this._service, {
 		method: 'POST',
 		mode: 'no-cors',
-		body: `(${this._marker._lngLat.lng} ${this._marker._lngLat.lat}) ${ikind} ${description} ${this._referer || window.location.href}`
+		body: `(${this._marker._lngLat.lng} ${this._marker._lngLat.lat}) ${ikind} ${description} ${referer} ${timestamp}`
 	}).then(response => {
 		this._container.querySelector('.issue-report .confirmation').className = 'confirmation confirmation-succ';
 	})
